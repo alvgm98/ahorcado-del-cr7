@@ -15,7 +15,7 @@ header h2 {
 .title {
   display: flex;
   align-items: flex-end;
-  gap: 40px;
+  gap: 10px;
 }
 
 .title h1 {
@@ -24,13 +24,14 @@ header h2 {
 }
 
 .siuu {
-  transition: all 500ms;
+  transition: scale 500ms, transform 600ms;
 }
 
 .siuu:hover {
   cursor: pointer;
-  transform: scale(1.7);
-  transition: all 300ms;
+  scale: 2.7;
+  transform: translateX(30px);
+  transition: scale 300ms, transform 200ms;
 }
 
 main {
