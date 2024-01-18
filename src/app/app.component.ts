@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   palabraIntroducida: string = '';
-  palabra: string = '';
+  palabra: string = 'P*t*t*';
   intentos: number = 0;
 
   acertada: boolean = false;

@@ -4,11 +4,40 @@
 </header>
 
 <main>
-  <div class="title">
-    <h1>EL AHORCADO DEL BICHO</h1>
-    <div class="siuu"><h1>SIUUUU!!</h1></div>
-  </div>
-  <div id="el-bicho">
+  <aside>
+    <div class="title">
+      <h1>EL AHORCADO DEL BICHO</h1>
+      <div class="siuu"><h1>SIUUUU!!</h1></div>
+    </div>
+
+    <div class="palabra">
+      @for (letra of this.palabra; track $index) {
+      <div class="letra">
+        <p>
+          @if (palabra.charAt($index) != '*') {
+          {{ palabra.charAt($index).toLocaleUpperCase() }}
+          }
+        </p>
+      </div>
+      }
+    </div>
+
+    <form>
+      <label for="input"> El bicho dice la letra: </label>
+      <input
+        type="text"
+        id="input"
+        maxlength="1"
+        minlength="1"
+        pattern="[a-zA-Z]"
+        title="El bicho solo acepta letras SIUU!!"
+        required
+      />
+      <button type="submit">PROBAR</button>
+    </form>
+  </aside>
+
+  <section id="el-bicho">
     <img src="../assets/img/soporte.png" />
     <img class="cabeza" src="../assets/img/cabeza.png" />
     <img src="../assets/img/torso.png" />
@@ -16,5 +45,5 @@
     <img src="../assets/img/brazo2.png" />
     <img src="../assets/img/pierna1.png" />
     <img src="../assets/img/pierna2.png" />
-  </div>
+  </section>
 </main>
