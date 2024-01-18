@@ -58,6 +58,7 @@ aside {
 
 .letra {
   width: 40px;
+  height: 80px;
   border-bottom: 5px solid #fff;
 
   display: flex;
@@ -130,7 +131,7 @@ form button:hover {
   padding: 12px 12px 12px 20px;
 }
 
-#acertaste {
+.final {
   margin-top: 5vh;
 
   display: flex;
@@ -138,26 +139,26 @@ form button:hover {
   align-items: center;
 }
 
-#acertaste h3 {
+.final h3 {
   font-size: 25px;
   margin: 0;
 }
 
-#acertaste h5 {
+.final h5 {
   font-size: 20px;
   margin-bottom: 0;
 }
 
-#acertaste .siuu2 h1 {
+.final .siuu2 h1 {
   margin: 20px 0 0 0;
   font-size: 40px;
 }
 
-#acertaste .siuu2 {
+.final .siuu2 {
   transition: all 500ms;
 }
 
-#acertaste .siuu2:hover {
+.final .siuu2:hover {
   cursor: pointer;
   scale: 3;
   transition: all 300ms;

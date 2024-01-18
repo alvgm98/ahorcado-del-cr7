@@ -10,7 +10,7 @@
       <div class="siuu"><h1>SIUUUU!!</h1></div>
     </div>
 
-    @if (!palabraEnJuego && !acertada) {
+    @if (!palabraEnJuego && !acertada && intentos < 6) {
     <section id="introducir-palabra">
       <h3>¿Desafias al bicho a un ahorcado?</h3>
       <form (ngSubmit)="empezarJuego($event)">
@@ -21,12 +21,16 @@
             name="palabraIntroducida"
             id="palabraIntroducida"
             type="text"
+            minlength="2"
+            maxlength="15"
+            title="Solo se permiten letras."
+            required
           />
           <button type="submit">JUGAR!</button>
         </div>
       </form>
     </section>
-    } @else if (palabraEnJuego && !acertada) {
+    } @else if (palabraEnJuego && !acertada && intentos < 6) {
     <div class="palabra">
       @for (letra of this.palabra; track $index) {
       <div class="letra">
@@ -54,10 +58,14 @@
       />
       <button type="submit">PROBAR</button>
     </form>
+    } @else if (intentos == 6) {
+    <h3>MATASTE AL BICHO! COMO TE ATREVES!!!</h3>
+    <h5>NO VUELVAS POR AQUI!</h5>
+    <h5>La palabra era: {{ palabra }}</h5>
     } @else if (acertada) {
-    <section id="acertaste">
+    <section class="final">
       <h3>EL BICHO GANÓ! EL BICHO SIEMPRE GANA!</h3>
-      <h5>La palabra era: {{ palabra }}</h5>
+      <h5>La palabra era: {{ palabraIntroducida }}</h5>
       <div class="siuu2" (click)="volverAJugar($event)"><h1>SIUUUU!!</h1></div>
     </section>
     }
@@ -65,11 +73,11 @@
 
   <section id="el-bicho">
     @if (!acertada) {
-      <img src="../assets/img/soporte.png" />
-    }
-
-    @if (intentos >= 1 || acertada) {
+    <img src="../assets/img/soporte.png" />
+    } @if ((intentos >= 1 && intentos < 6) || acertada) {
     <img src="../assets/img/cabeza.png" />
+    } @else if (intentos >= 6) {
+    <img src="../assets/img/cabeza-llorando.png" />
     } @if (intentos >= 2 || acertada) {
     <img src="../assets/img/torso.png" />
     } @if (intentos >= 3 || acertada) {

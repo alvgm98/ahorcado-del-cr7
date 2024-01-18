@@ -23,6 +23,11 @@ export class AppComponent {
   empezarJuego(event: Event) {
     event.preventDefault();
 
+    if (!this.validarPalabraIndroducita()) {
+      alert('Por favor, ingresa solo letras.');
+      return;
+    }
+
     this.palabraIntroducida = this.palabraIntroducida.toLowerCase();
 
     // Rellena 'palabra' de '*' los cuales se usarán para controlar si el Usuario ha acertado la palabra.
@@ -33,6 +38,12 @@ export class AppComponent {
 
   comprobarLetra(event: Event) {
     event.preventDefault();
+
+    if (!this.validarLetra()) {
+      alert('Por favor, ingresa solo letras. (minimo 2)');
+      return;
+    }
+
     // Manejamos todos los caracteres en minusculas.
     this.letra = this.letra.toLowerCase();
 
@@ -64,6 +75,16 @@ export class AppComponent {
     this.intentos = 0;
     this.acertada = false;
     this.palabraEnJuego = false;
+  }
+
+  validarPalabraIndroducita(): boolean {
+    const patron = /^[a-zA-Z]{2,}$/;
+    return patron.test(this.palabraIntroducida);
+  }
+
+  validarLetra(): boolean {
+    const patron = /^[a-zA-Z]+$/;
+    return patron.test(this.letra);
   }
 
 }
