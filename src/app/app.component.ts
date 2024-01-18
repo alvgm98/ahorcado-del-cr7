@@ -1,35 +1,46 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgClass, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   palabraIntroducida: string = '';
-  palabra: string = 'P*t*t*';
+  palabra: string = '';
+
+  letra: string = '';
   intentos: number = 0;
 
   acertada: boolean = false;
+  palabraEnJuego: boolean = false;
 
 
-  setPalabraIntroducida(palabraIntroducida: string) {
-    this.palabraIntroducida = palabraIntroducida;
+  empezarJuego(event: Event) {
+    event.preventDefault();
+
+    this.palabraIntroducida = this.palabraIntroducida.toLowerCase();
 
     // Rellena 'palabra' de '*' los cuales se usarán para controlar si el Usuario ha acertado la palabra.
-    this.palabra = this.palabra.padEnd(palabraIntroducida.length, '*');
+    this.palabra = this.palabra.padEnd(this.palabraIntroducida.length, '*');
+
+    this.palabraEnJuego = true;
   }
 
-  comprobarLetra(letra: string) {
+  comprobarLetra(event: Event) {
+    event.preventDefault();
+    // Manejamos todos los caracteres en minusculas.
+    this.letra = this.letra.toLowerCase();
 
-    if (this.palabraIntroducida.includes(letra)) {
+    if (this.palabraIntroducida.includes(this.letra)) {
       for (let i = 0; i < this.palabra.length; i++) {
         // Introduce la letra acertada en 'palabra' en las posiciones correspondientes.
-        if (this.palabraIntroducida.charAt(i) == letra) {
-          this.palabra = this.palabra.substring(0, i) + letra + this.palabra.substring(i + 1);
+        if (this.palabraIntroducida.charAt(i) == this.letra) {
+          this.palabra = this.palabra.substring(0, i) + this.letra + this.palabra.substring(i + 1);
         }
         // Comprueba si se han terminado los '*'
         if (!this.palabra.includes('*')) {
@@ -41,6 +52,18 @@ export class AppComponent {
       this.intentos++;
     }
 
+    this.letra = '';
+  }
+
+  volverAJugar(event: Event) {
+    event.preventDefault();
+
+    this.palabraIntroducida = '';
+    this.palabra = '';
+    this.letra = '';
+    this.intentos = 0;
+    this.acertada = false;
+    this.palabraEnJuego = false;
   }
 
 }

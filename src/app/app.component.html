@@ -10,6 +10,23 @@
       <div class="siuu"><h1>SIUUUU!!</h1></div>
     </div>
 
+    @if (!palabraEnJuego && !acertada) {
+    <section id="introducir-palabra">
+      <h3>¿Desafias al bicho a un ahorcado?</h3>
+      <form (ngSubmit)="empezarJuego($event)">
+        <label for="palabraIntroducida"> Introduce una palabra: </label>
+        <div>
+          <input
+            [(ngModel)]="palabraIntroducida"
+            name="palabraIntroducida"
+            id="palabraIntroducida"
+            type="text"
+          />
+          <button type="submit">JUGAR!</button>
+        </div>
+      </form>
+    </section>
+    } @else if (palabraEnJuego && !acertada) {
     <div class="palabra">
       @for (letra of this.palabra; track $index) {
       <div class="letra">
@@ -22,9 +39,11 @@
       }
     </div>
 
-    <form>
+    <form id="comprobarLetra" (ngSubmit)="comprobarLetra($event)">
       <label for="input"> El bicho dice la letra: </label>
       <input
+        [(ngModel)]="letra"
+        name="letra"
         type="text"
         id="input"
         maxlength="1"
@@ -35,15 +54,32 @@
       />
       <button type="submit">PROBAR</button>
     </form>
+    } @else if (acertada) {
+    <section id="acertaste">
+      <h3>EL BICHO GANÓ! EL BICHO SIEMPRE GANA!</h3>
+      <h5>La palabra era: {{ palabra }}</h5>
+      <div class="siuu2" (click)="volverAJugar($event)"><h1>SIUUUU!!</h1></div>
+    </section>
+    }
   </aside>
 
   <section id="el-bicho">
-    <img src="../assets/img/soporte.png" />
-    <img class="cabeza" src="../assets/img/cabeza.png" />
+    @if (!acertada) {
+      <img src="../assets/img/soporte.png" />
+    }
+
+    @if (intentos >= 1 || acertada) {
+    <img src="../assets/img/cabeza.png" />
+    } @if (intentos >= 2 || acertada) {
     <img src="../assets/img/torso.png" />
+    } @if (intentos >= 3 || acertada) {
     <img src="../assets/img/brazo1.png" />
+    } @if (intentos >= 4 || acertada) {
     <img src="../assets/img/brazo2.png" />
+    } @if (intentos >= 5 || acertada) {
     <img src="../assets/img/pierna1.png" />
+    } @if (intentos >= 6 || acertada) {
     <img src="../assets/img/pierna2.png" />
+    }
   </section>
 </main>
