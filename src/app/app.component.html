@@ -10,7 +10,7 @@
       <div class="siuu"><h1>SIUUUU!!</h1></div>
     </div>
 
-    @if (!palabraEnJuego && !acertada && intentos < 6) {
+    @if (!palabraEnJuego && !acertada && intentos < 6) { <!-- PANTALLA DE INICIO -->
     <section id="introducir-palabra">
       <h3>¿Desafias al bicho a un ahorcado?</h3>
       <form (ngSubmit)="empezarJuego($event)">
@@ -30,7 +30,7 @@
         </div>
       </form>
     </section>
-    } @else if (palabraEnJuego && !acertada && intentos < 6) {
+    } @else if (palabraEnJuego && !acertada && intentos < 6) { <!-- PANTALLA DEL JUEGO -->
     <div class="palabra">
       @for (letra of this.palabra; track $index) {
       <div class="letra">
@@ -58,11 +58,11 @@
       />
       <button type="submit">PROBAR</button>
     </form>
-    } @else if (intentos == 6) {
+    } @else if (intentos == 6) { <!-- PANTALLA DE DERROTA -->
     <h3>MATASTE AL BICHO! COMO TE ATREVES!!!</h3>
     <h5>NO VUELVAS POR AQUI!</h5>
-    <h5>La palabra era: {{ palabra }}</h5>
-    } @else if (acertada) {
+    <h5>La palabra era: {{ palabraIntroducida }}</h5>
+    } @else if (acertada) { <!-- PANTALLA DE VICTORIA -->
     <section class="final">
       <h3>EL BICHO GANÓ! EL BICHO SIEMPRE GANA!</h3>
       <h5>La palabra era: {{ palabraIntroducida }}</h5>
@@ -71,6 +71,7 @@
     }
   </aside>
 
+  <!-- HORCA -->
   <section id="el-bicho">
     @if (!acertada) {
     <img src="../assets/img/soporte.png" />
