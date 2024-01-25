@@ -12,14 +12,16 @@ header h2 {
 main {
   flex: 1;
   position: relative;
+  /* overflow: hidden; */
 
   display: flex;
   justify-content: space-between;
 }
 
 aside {
+  align-self: center;
+
   flex: 1;
-  padding-top: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +37,7 @@ aside {
 }
 
 .title h1 {
-  margin: 10px 0 0 0;
+  margin: 0;
 }
 
 .siuu {
@@ -170,6 +172,7 @@ form button:hover {
 }
 
 #el-bicho img {
+  padding-top: 8vh;
   width: 100%;
   position: absolute;
   top: 0;
@@ -182,4 +185,26 @@ form button:hover {
 
 #el-bicho img:nth-of-type(2) {
   z-index: 2;
+}
+
+@media (width < 1000px) {
+  main {
+    flex-direction: column-reverse;
+    flex: 0;
+  }
+
+  aside {
+    margin-top: 48vh;
+    height: 50%;
+  }
+
+  #el-bicho {
+    width: 100%;
+    height: 50%;
+  }
+
+  #el-bicho img {
+    padding-top: 0;
+    position: absolute;
+  }
 }
